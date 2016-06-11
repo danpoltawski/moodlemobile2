@@ -1,0 +1,25 @@
+<ion-view>
+    <ion-nav-title>{{ title }}</ion-nav-title>
+
+    <ion-content class="padding" delegate-handle="mmaMessagesScroll" mm-state-class>
+        <mm-loading hide-until="loaded">
+            <section class="mma-messages-discussion-container" aria-live="polite">
+                <div ng-repeat="message in messages track by $index">
+
+                    <p class="mma-messages-date"><span>{{ message.timesent * 1000 | mmFormatDate:"dfdayweekmonth" }}</span></p>
+
+                    <div class='item item-message item-text-wrap'>
+                        <mm-format-text after-render="scrollAfterRender" watch="true">{{ message.message | mmaMessagesFormat }}</mm-format-text>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div ng-if="!messages || messages.length <= 0">
+                    <p>{{ 'mma.messages.nomessages' | translate}}</p>
+                </div>
+            </section>
+        </mm-loading>
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,18 @@
+<ion-nav-title>{{ title }}</ion-nav-title>
+<ion-content mm-state-class>
+        <ul class="list">
+            <li ng-repeat="chat in chats">
+                <a class="item item-icon-left" ui-sref="site.local_chatlogs-chat({conversationid: chat.conversationid})">
+                    <i class="icon ion-chatbubble-working"></i>
+                    <!--<i class="icon ion-checkmark-circled"></i>-->
+                    <p class="item-heading">{{ chat.timestart * 1000 | mmFormatDate:"dfdayweekmonth" }}</p>
+                    <p>{{ chat.timestart * 1000 | mmFormatDate:"dftimedate" }} - {{ chat.timeend * 1000 | mmFormatDate:"dftimedate" }}</p>
+                    <span class="badge badge-assertive">{{chat.messagecount}}</span>
+                </a>
+            </li>
+        </ul>
+
+        <div ng-if="!chats || chats.length <= 0" class="padding">
+            <p>{{ 'mma.messages.nomessages' | translate}}</p>
+        </div>
+</ion-content>
